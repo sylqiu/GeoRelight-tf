@@ -1,0 +1,16 @@
+function prepare_real(name)
+path = '/home/likewise-open/SENSETIME/qiudi/Documents/relighting_trial/tf_relight/losses/relight_img/real/tof_rgbd_relight_mask/';
+out = '/home/likewise-open/SENSETIME/qiudi/Documents/relighting_trial/tf_relight/losses/relight_img/real/real_data/';
+conf2 = im2double(imread([path name '/' name '_result/alpha.png']));
+rgb2 = im2double(imread([path name '/' name '_result/img.png']));
+d2 = im2double(imread([path name '/' name '_result/depth_guided.png']));
+sz = size(d2);
+xo = 1; yo = 25;
+conf = imresize(conf2(xo:xo+120, yo:yo+120), [256,256], 'nearest');
+conf(conf<1) = 0;
+rgb = imresize(rgb2(xo:xo+120, yo:yo+120, :), [256,256]);
+d = imresize(d2(xo:xo+120, yo:yo+120), [256,256]);
+% a =1;
+[x, y] = meshgrid(1:256, 256:-1:1);
+
+end
